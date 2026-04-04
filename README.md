@@ -10,6 +10,20 @@ It simulates a company’s internal finance system where users interact with fin
 
 ---
 
+## 🎯 Design Philosophy
+
+This project focuses on clean backend design, logical data flow, and role-based access control rather than production-level complexity.
+
+The objective was to demonstrate strong backend fundamentals, including:
+- Clear API design and structure
+- Proper separation of concerns (Controller → Service → Repository)
+- Effective use of aggregation logic for dashboard analytics
+- Maintainable and readable code
+
+Unnecessary complexity was intentionally avoided to keep the system simple, scalable, and aligned with real-world backend practices.
+
+---
+
 ## 🏗️ Architecture
 
 ```
