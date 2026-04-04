@@ -196,6 +196,16 @@ mvn spring-boot:run
 
 ---
 
+## ⚙️ Java Version Requirement
+
+This project was developed using JDK 25.
+
+Please ensure JDK 25 is installed to run the project without compatibility issues.
+
+Alternatively, you may update the project configuration to match your local Java version.
+
+---
+
 ## 🧩 Assumptions
 
 * Financial records are manually entered by users
