@@ -191,32 +191,88 @@ Unnecessary complexity was intentionally avoided to keep the system simple, scal
 
 ## ⚙️ Setup Instructions
 
-1. Clone the repository
-2. Configure MySQL database:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/finance_data_db
-spring.datasource.username=root
-spring.datasource.password=your_password
-```
-
-3. Run the application:
-
-```
-mvn spring-boot:run
-```
-
-4. Test APIs using Postman
+Follow the steps below to run the project locally:
 
 ---
 
-## ⚙️ Java Version Requirement
+### 1. Clone the Repository
 
-This project was developed using JDK 25.
+```bash
+git clone https://github.com/RaghavBhadada/finance-data-backend.git
+cd finance-data-backend
+```
 
-Please ensure JDK 25 is installed to run the project without compatibility issues.
+---
 
-Alternatively, you may update the project configuration to match your local Java version.
+### 2. Java Requirement
+
+This project requires **JDK 25**.
+
+---
+
+### 3. Setup MySQL Database
+
+Create a database:
+
+```sql
+CREATE DATABASE finance_data_processing;
+```
+
+---
+
+### 4. Configure Application Properties
+
+Open:
+
+```text
+src/main/resources/application.properties
+```
+
+Update:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/finance_data_processing
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+```
+
+> Note: Database credentials are not included for security reasons. Please configure your own local database.
+
+---
+
+### 5. Run the Application
+
+```bash
+mvn clean install
+mvn spring-boot:run
+```
+
+---
+
+### 6. Access the Application
+
+```text
+http://localhost:1111
+```
+
+---
+
+### 7. Testing the APIs
+
+Use Postman or any API client.
+
+Recommended flow:
+
+1. Register Owner
+2. Login → Get JWT Token
+
+Use token in header:
+
+```text
+Authorization: Bearer <your_token>
+```
+
+3. Test secured APIs
 
 ---
 
