@@ -97,6 +97,7 @@ Unnecessary complexity was intentionally avoided to keep the system simple, scal
 * Track income and expenses
 * Associate records with users
 * Maintain audit fields (`createdAt`, `createdBy`)
+* Supports dynamic filtering using category, type, and date range 
 
 ---
 
@@ -156,6 +157,7 @@ Unnecessary complexity was intentionally avoided to keep the system simple, scal
 * `GET /records` (ALL ROLES)
 * `PUT /records/{id}` (ADMIN only)
 * `DELETE /records/{id}` (ADMIN only)
+* `GET /records/filter` (ALL ROLES)
 
 ---
 
