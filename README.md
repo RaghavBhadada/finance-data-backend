@@ -10,6 +10,14 @@ It simulates a company’s internal finance system where users interact with fin
 
 ---
 
+## 🎥 Project Demo Video
+
+A short walkthrough demonstrating the system design, authentication flow, role-based access control, and dashboard APIs.
+
+🔗 Video Link: https://youtu.be/twAJXF28Svg
+
+---
+
 ## 🎯 Design Philosophy
 
 This project focuses on clean backend design, logical data flow, and role-based access control rather than production-level complexity.
