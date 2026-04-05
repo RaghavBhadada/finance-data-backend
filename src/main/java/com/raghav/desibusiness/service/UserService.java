@@ -46,11 +46,11 @@ public class UserService {
     public String registerOwner(RegisterRequestDto request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            return "Email already exists";
+            throw new RuntimeException("Email already exists");
         }
 
         if (userRepository.existsByPhone(request.getPhone())) {
-            return "Phone already exists";
+            throw new RuntimeException("Phone already exists");
         }
 
         User user = User.builder()
@@ -60,7 +60,7 @@ public class UserService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.OWNER)
                 .emailVerified(true)
-                .phoneVerified(false)
+                .phoneVerified(true)
                 .status(Status.ACTIVE)
                 .build();
 
@@ -75,18 +75,18 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
 
         if (optionalUser.isEmpty()) {
-            return "User not found";
+            throw new RuntimeException("User not found");
         }
 
 
         User user = optionalUser.get();
 
         if (user.getStatus() == Status.INACTIVE) {
-            return "User is inactive";
+            throw new RuntimeException("User is inactive");
         }
 
         if (!user.isEmailVerified()) {
-            return "Please verify your email before logging in";
+            throw new RuntimeException("Please verify your email before logging in");
         }
 
         // error handling added for only !user.isPhoneVerified() with exception PhoneNotVerifiedException with our exception handler GlobalExceptionHandler
@@ -97,7 +97,7 @@ public class UserService {
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            return "Invalid password";
+            throw new RuntimeException("Invalid password");
         }
 
         String token = jwtUtil.generateToken(user.getEmail(), user.getRole().name());
@@ -146,11 +146,11 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("OTP not found"));
 
         if (otp.getExpiryDate().isBefore(LocalDateTime.now())) {
-            return "OTP expired";
+            throw new RuntimeException("OTP expired");
         }
 
         if (!otp.getOtp().equals(otpValue)) {
-            return "Invalid OTP";
+            throw new RuntimeException("Invalid OTP");
         }
 
         user.setPhoneVerified(true);
@@ -170,11 +170,11 @@ public class UserService {
     public String createEmployee(EmployeeRequestDto request , Role role) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            return "Email already exists";
+            throw new RuntimeException("Email already exists");
         }
 
         if (userRepository.existsByPhone(request.getPhone())) {
-            return "Phone already exists";
+            throw new RuntimeException("Phone already exists");
         }
 
         User employee = User.builder()

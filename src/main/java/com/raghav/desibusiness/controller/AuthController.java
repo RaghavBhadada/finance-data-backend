@@ -29,7 +29,7 @@ public class AuthController {
     }
 
     @PostMapping("/register-owner")
-    public String registerOwner(@RequestBody RegisterRequestDto request) {
+    public String registerOwner(@Valid @RequestBody RegisterRequestDto request) {
         return userService.registerOwner(request);
     }
 
@@ -48,7 +48,7 @@ public class AuthController {
                         .orElseThrow(() -> new RuntimeException("Invalid token"));
 
         if (verificationToken.getExpiryDate().isBefore(LocalDateTime.now())) {
-            return "Token expired";
+            throw new RuntimeException("Token expired");
         }
 
         User user = verificationToken.getUser();

@@ -4,6 +4,7 @@ import com.raghav.desibusiness.dto.EmployeeRequestDto;
 
 import com.raghav.desibusiness.entity.Role;
 import com.raghav.desibusiness.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +26,13 @@ public class BusinessController {
 
     @PreAuthorize("hasRole('OWNER')")
     @PostMapping("/add-employee")
-    public String addEmployee(@RequestBody EmployeeRequestDto request) {
+    public String addEmployee(@Valid @RequestBody EmployeeRequestDto request) {
         return userService.createEmployee(request , Role.EMPLOYEE);
     }
 
     @PreAuthorize("hasAnyRole('OWNER','EMPLOYEE')")
     @PostMapping("/add-viewer")
-    public String addViewer(@RequestBody EmployeeRequestDto request) {
+    public String addViewer(@Valid @RequestBody EmployeeRequestDto request) {
         return userService.createEmployee(request, Role.VIEWER);
     }
 
