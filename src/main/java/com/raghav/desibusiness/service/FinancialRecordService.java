@@ -6,6 +6,7 @@ import com.raghav.desibusiness.repository.FinancialRecordRepository;
 import com.raghav.desibusiness.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -64,5 +65,20 @@ public class FinancialRecordService {
                 .orElseThrow(() -> new RuntimeException("Record not found"));
 
         recordRepository.delete(record);
+    }
+
+    public List<FinancialRecord> filterRecords(
+            String category,
+            RecordType type,
+            LocalDate startDate,
+            LocalDate endDate
+    ) {
+
+        return recordRepository.findAll().stream()
+                .filter(r -> category == null || r.getCategory().equalsIgnoreCase(category))
+                .filter(r -> type == null || r.getType() == type)
+                .filter(r -> startDate == null || !r.getDate().isBefore(startDate))
+                .filter(r -> endDate == null || !r.getDate().isAfter(endDate))
+                .toList();
     }
 }

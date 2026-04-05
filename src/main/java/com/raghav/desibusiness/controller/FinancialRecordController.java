@@ -2,12 +2,14 @@ package com.raghav.desibusiness.controller;
 
 import com.raghav.desibusiness.dto.FinancialRecordRequestDto;
 import com.raghav.desibusiness.entity.FinancialRecord;
+import com.raghav.desibusiness.entity.RecordType;
 import com.raghav.desibusiness.service.FinancialRecordService;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -53,5 +55,16 @@ public class FinancialRecordController {
     public String deleteRecord(@PathVariable Long id) {
         recordService.deleteRecord(id);
         return "Record deleted successfully";
+    }
+
+    @GetMapping("/filter")
+    @PreAuthorize("hasAnyRole('OWNER','EMPLOYEE','VIEWER')")
+    public List<FinancialRecord> filterRecords(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) RecordType type,
+            @RequestParam(required = false) LocalDate startDate,
+            @RequestParam(required = false) LocalDate endDate
+    ) {
+        return recordService.filterRecords(category, type, startDate, endDate);
     }
 }

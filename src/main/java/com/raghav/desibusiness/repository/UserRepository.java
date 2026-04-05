@@ -7,10 +7,10 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByEmail(String email); // created predifined function will use them later During Login
+    Optional<User> findByEmail(String email);
 
-    boolean existsByEmail(String email); // created predifined function will use them later During Registration
+    boolean existsByEmail(String email); //
 
-    boolean existsByPhone(String phone); // created predifined function will use them later During registration
+    boolean existsByPhone(String phone); //
 }
 
