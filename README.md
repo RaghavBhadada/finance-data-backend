@@ -68,6 +68,7 @@ Unnecessary complexity was intentionally avoided to keep the system simple, scal
 * Spring Data JPA
 * MySQL
 * Lombok
+* Swagger
 
 ---
 
@@ -165,6 +166,14 @@ Unnecessary complexity was intentionally avoided to keep the system simple, scal
 
 * `GET /dashboard/summary`
 * `GET /dashboard/monthly-trends`
+
+---
+
+## 📄 API Documentation (Swagger)
+
+Swagger UI is available locally for exploring and testing APIs:
+
+http://localhost:1111/swagger-ui/index.html
 
 ---
 
